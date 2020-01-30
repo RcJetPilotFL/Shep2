@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="ContentRetriever" extends="Task" >
+
+<interface>
+  <field id="request" type="assocarray" />
+  <!-- visible should always be false, only here to remove warning from MainScene.brs -->
+  <field id="visible" type="bool" value="false"/>
+   <field id="requestNormal" type="assocarray" />
+   <field id="searchResults" type="assocarray" />
+   <field id="categoryResults" type="assocarray" />
+   
+   
+
+   
+   
+   
+ 
+</interface>
+
+<script type="text/brightscript" uri="pkg:/components/ContentRetriever/contentretriever.brs" />
+
+</component>

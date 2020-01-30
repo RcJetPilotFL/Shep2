@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********--> 
+
+<!-- 
+    main node which handles home screen children 
+    -->
+<component name="searchScreen" extends="Group">
+    
+    <interface>
+		<field id="focusKey" type="integer"/>
+		<field id="showDetailScreen" type="bool"/>
+      	<field id="startParse2" type="bool" onChange="startParse2"/>
+      	<field id="searchContentData" type="node"/>
+      	<field id="searchContentArray" type="array"/>
+		<field id="contentItemSelected" type="intArray" alias="contentList.rowitemSelected" onChange="contentItemSelected" />
+	
+    </interface>
+    
+   
+    <script type="text/brightscript" uri="pkg:/components/searchScreen/searchScreen.brs" />
+	<script type="text/brightscript" uri="pkg:/source/main.brs" />
+    
+    <children>
+
+			
+			
+			
+			
+			<Group id="topmenu" opacity="1.0">
+				
+					<Label id="Nav_text"  text="Search" color="#ffffff" >	
+								
+					</Label>
+					
+					<Label id="Nav_subtext"  text="Search for videos of your likes..." color="#ffffff" >	
+								
+					</Label>
+			
+			
+			</Group>
+			
+			
+				
+			
+
+				<Poster id="headerLogo" uri="pkg://images/logo.png" translation="[60,10]" height="80" width="263" />	
+
+					
+				<MiniKeyboard
+				id="Keyboard"
+				keyColor="#ffffff"
+				focusedKeyColor="#ffffff"
+				
+				/>
+				
+				<Rowlist
+				id = "contentList"
+				itemComponentName="homelistItemdesign"
+				focusBitmapURI="pkg://images/white.9.png"
+				focusBitmapBlendColor="#ff0000"
+				visible="false"
+				numRows="10"					
+				rowFocusAnimationStyle="floatingfocus"
+				showRowLabel="true"
+				showRowCounter="false"				
+				
+			/>
+				<Label id="noResultFound"  wrap="true" horizAlign="Center" vertAlign="Center"   color="#81C941">	
+								
+				</Label>
+			
+			<LoadingIndicator2
+			  id="loadingIndicator"
+			  visible="false"			  
+			/>	
+			
+			
+    </children>
+</component>

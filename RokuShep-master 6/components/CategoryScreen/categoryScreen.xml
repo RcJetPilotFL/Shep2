@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********--> 
+
+<!-- 
+    main node which handles home screen children 
+    -->
+<component name="categoryScreen" extends="Group">
+    
+    <interface>
+      	<field id="startParse" type="bool" onChange="startParse"/>
+      	<field id="startParse2" type="bool" onChange="startParse2"/>
+
+      	<field id="categoryItemSelected" type="intArray" alias="categoryList.rowItemSelected" onChange="categoryItemSelected"/>
+      	<field id="showDetailScreen" type="bool"/>
+      	<field id="contentArray" type="array"/>
+      	<field id="catContentData" type="node"/>
+      	<field id="contentItemSelected" type="intArray" alias="contentList.rowItemSelected" onChange="contentItemSelected"/>
+      	<field id="contentItemFocused" type="intArray" alias="contentList.rowItemFocused" onChange="contentItemFocused"/>
+
+
+
+
+    </interface>    
+   
+    <script type="text/brightscript" uri="pkg:/components/CategoryScreen/categoryScreen.brs" />
+	<script type="text/brightscript" uri="pkg:/source/main.brs" />
+	
+    
+    <children>	
+   
+
+	      <Rectangle id="opacityBGHeader" color="#000000" height="100" width="1280" translation="[0,0]" opacity="0.6"/> 
+    	<Poster id="headerLogo" uri="pkg://images/logo.png" translation="[60,10]" height="80" width="263" />
+
+    	<Label id="titleMarker" visible="false" text="|" color="#ed1c24"  wrap="true" translation="[60,110]" height="250" width="900" >	
+			 <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="36" />
+
+     	  </Label> 
+	      <ScrollingLabel id="detailTitle" scrollSpeed="50" color="#ffffff" translation="[75,110]" height="100" maxWidth="700" >
+
+	        <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="36" />
+
+	      </ScrollingLabel>  
+
+	      <Label id="detailDescription" color="#ffffff" lineSpacing="0.2" wrap="true" translation="[60,160]" height="250" width="900" >	
+			 <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="24" />
+
+     	  </Label> 
+			
+
+
+			
+		<Rowlist
+		id = "categoryList"
+		itemComponentName="homelistItemdesign"
+		focusBitmapURI="pkg://images/white.9.png"
+		focusBitmapBlendColor="#ff0000"
+		visible="true"		
+		numRows="1"	
+		rowFocusAnimationStyle="floatingfocus"
+
+		showRowLabel="false"
+		showRowCounter="false"
+		/>	
+
+
+		<Rowlist
+		id = "contentList"
+		itemComponentName="homelistItemdesign"
+		focusBitmapURI="pkg://images/white.9.png"
+		focusBitmapBlendColor="#ff0000"
+		visible="true"		
+		numRows="2"	
+		rowFocusAnimationStyle="floatingfocus"
+
+		showRowLabel="true"
+		showRowCounter="false"
+		/>	
+		
+			
+		<LoadingIndicator2
+		id="loadingIndicator"
+		visible="false"				
+		/>	
+    </children>
+</component>

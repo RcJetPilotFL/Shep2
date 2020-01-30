@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="contentRetriever_token" extends="Task" >
+
+<interface>
+ <field id="token" type="String"/>
+
+
+</interface>
+
+<script type="text/brightscript" uri="pkg:/components/ContentRetriever/contentRetriever_token.brs" />
+<script type="text/brightscript" uri="pkg:/source/main.brs" />
+
+</component>

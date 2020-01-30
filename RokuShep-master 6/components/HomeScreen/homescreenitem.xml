@@ -1,0 +1,112 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********-->
+ 
+<component name = "homelistItemdesign" extends = "Group" >
+ 
+  <interface > 
+    <field id = "itemContent" type = "node" onChange = "showcontent"/>
+   <!-- <field id = "rowListHasFocus" type = "Boolean" onchange = "RowListfocusChange"/>
+    <field id = "itemHasFocus" type = "Boolean" onchange = "rowListItemFocusChange"/>
+    <field id = "focusPercent" type = "float" onChange = "showfocus"/>
+    <field id = "rowHasFocus" type = "bool"/> -->
+
+  </interface>
+  <!--<script type="text/brightscript" uri="pkg:/source/main.brs" />-->
+ 
+  <script type = "text/brightscript" >
+
+    <![CDATA[
+
+    sub init()
+      m.itemposter = m.top.findNode("itemPoster")	 
+      m.duration=m.top.findNode("duration") 	    
+      m.title=m.top.findNode("title")       
+      m.durationBG=m.top.findNode("durationBG")  
+      m.categorytitle=m.top.findNode("categorytitle") 
+    end sub
+
+    sub showcontent()
+        itemcontent = m.top.itemContent
+        m.itemPoster.failedBitmapURI="pkg://images/loading_bitmap.png"
+        m.itemPoster.loadingBitmapURI="pkg://images/loading_bitmap.png"
+        m.itemposter.uri = itemcontent.HDPosterUrl   
+        m.title.text = itemcontent.title  
+      if itemcontent.description="contentItem"
+        m.itemPoster.visible=true
+        if itemcontent.shortDescriptionLine1<>""
+          m.durationBG.visible=true
+          m.duration.visible=true
+          m.duration.text = itemcontent.shortDescriptionLine1
+        else
+          m.durationBG.visible=false
+        end if
+      else if itemcontent.description="optionItem"
+        m.durationBG.visible=false
+        m.itemPoster.visible=true
+        m.itemPoster.failedBitmapURI="pkg://images/loading_bitmap.png"
+        m.itemPoster.loadingBitmapURI="pkg://images/loading_bitmap.png"
+        m.itemposter.height=128
+        m.itemposter.width=128
+        m.itemposter.translation=[46,20]
+      else if itemcontent.description="searchItem"
+        m.durationBG.visible=false
+        m.itemPoster.visible=true
+      else if itemcontent.description="categoryItem"
+        m.durationBG.visible=false
+        m.itemPoster.visible=true
+        m.title.visible=false
+        m.categoryTitle.visible=true
+        m.categoryTitle.text=itemcontent.title 
+      end if
+
+    end sub
+
+
+
+
+
+    ]]>
+
+  </script>
+
+  <children >
+
+    <Poster id = "itemPoster" 
+      translation = "[ 0, 0 ]" 
+      visible="false"
+      width = "220" 
+      height = "168" >
+	 </Poster>
+
+
+   <ScrollingLabel id="title" scrollSpeed="50" color="#ffffff" translation="[5,183]" maxwidth="215" >
+  
+      <Font role="font" uri="pkg:/fonts/lato/Lato-Regular.ttf" size="18" />
+
+    </ScrollingLabel>
+
+    <Label id="categorytitle" visible="false"  color="#ffffff" translation="[0,0]" width="220" height="168" horizAlign="Center" vertAlign="Center">
+  
+      <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="24" />
+
+    </Label>
+
+     <Rectangle id = "durationBG" 
+      translation = "[ 145, 140 ]" 
+      color="#000000"
+      opacity="0.8"
+      visible="true"
+      width = "80" 
+      height = "20" >
+     </Rectangle>
+
+    <Label id="duration" visible="true" vertAlign="Center" horizAlign="Center" translation="[145,140]"  height="20"  color="#ffffff" width="80" >
+
+      <Font role="font" uri="pkg:/fonts/lato/Lato-Regular.ttf" size="16" />
+
+    </Label>
+
+  </children>
+
+</component>

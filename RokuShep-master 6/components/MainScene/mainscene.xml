@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********--> 
+
+<!-- 
+    main node which handles home screen children 
+    -->
+<component name="MainScene" extends="Scene">
+    
+    <interface>
+        <field id="showSearchScreen" type="bool" alias="HomeScreen.showSearchScreen" onChange="showSearchScreen"/>
+        <field id="showCategoryScreen" type="bool" alias="HomeScreen.showCategoryScreen" onChange="showCategoryScreen"/>
+        <field id="showFavoriteScreen" type="bool" alias="HomeScreen.showFavoriteScreen" onChange="showFavoriteScreen"/>
+        <field id="contentData" alias="HomeScreen.contentData" type="node" onChange="ShowDetailScreenFromHome"/>
+        <field id="catContentData" alias="categoryScreen.contentArray" type="array" onChange="ShowDetailScreenFromCategory"/>
+        <field id="searchContentData" alias="searchScreen.searchContentArray" type="array" onChange="ShowDetailScreenFromSearch"/>
+        <field id="favoriteContentData" alias="favoriteScreen.contentArray" type="array" onChange="ShowDetailScreenFromfavorite"/>
+	     
+    </interface>
+    
+   
+    <script type="text/brightscript" uri="pkg:/components/MainScene/MainScene.brs" />
+	<script type="text/brightscript" uri="pkg:/source/main.brs" />
+    
+    <children>
+
+   <GlobalInitializer id="GlobalInitializer"/>
+   
+
+   <HomeScreen id="HomeScreen"
+   visible="false"/>
+
+   <categoryScreen id="categoryScreen"
+   visible="false"/>
+
+   <searchScreen id="searchScreen"
+   visible="false"/>
+
+  <favoriteScreen id="favoriteScreen"
+   visible="false"/>
+
+
+   <Group id="detailScreen" visible="false">
+     
+
+
+        
+
+      <Poster id="detailPoster" height="720" width="1280" translation="[0,0]" />
+      <Rectangle id="opacityBG" color="#000000" height="620" width="1280" translation="[0,100]" opacity="0.7"/> 
+
+
+      <Label id="titleMarker" visible="true" text="|" color="#ed1c24"  wrap="true" translation="[550,110]" height="250" width="900" > 
+     <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="36" />
+
+      </Label> 
+      <ScrollingLabel id="detailTitle" scrollSpeed="50" color="#ffffff" translation="[565,110]" height="100" maxWidth="600" >
+        <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="36" />
+
+      </ScrollingLabel>  
+       <Rectangle id="opacityBGHeader" color="#000000" height="100" width="1280" translation="[0,0]" opacity="0.6"/> 
+
+      <Poster id="headerLogo" uri="pkg://images/logo.png" translation="[60,10]" height="80" width="263" />
+
+      <Label id="detailDescription" color="#ffffff" lineSpacing="0.2" wrap="true" translation="[550,160]" height="280" width="700" >
+
+        <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="24" />
+
+      </Label>  
+
+        <Rowlist
+        id = "contentList_1"
+        itemComponentName="homelistItemdesign2"
+        focusBitmapURI="pkg://images/white.9.png"
+        focusBitmapBlendColor="#ff0000"
+        visible="false"    
+        numRows="1" 
+        rowFocusAnimationStyle="floatingfocus"
+
+        showRowLabel="true"
+        showRowCounter="true"
+        />  
+
+        <ButtonGroup id="onpress"
+        focusedTextFont="font:MediumBoldSystemFont"
+        visible="true"       
+        focusedTextColor="#ffffff" 
+        textColor="#ffffff"
+        translation="[45,160]"
+        focusBitmapUri="pkg://images/white.9.png"
+        iconUri="pkg://images/"
+        focusedIconUri="pkg://images/"
+        />
+
+        <Video id="videoPlayer"
+          visible="false"/>
+
+
+      <Group id="videoPlayBackLoad" visible="false">
+        <Poster id="detailPosterVideoPLayback" height="720" width="1280" translation="[0,0]" />
+        <Rectangle id="opacityBGVideoPLayback" color="#000000" height="720" width="1280" translation="[0,0]" opacity="0.7"/> 
+        <ScrollingLabel id="detailTitleVideoPLaybackVideoPLayback" horizAlign="Center" scrollSpeed="50" color="#ed1c24" translation="[0,260]" maxWidth="1250" >
+          <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="36" />
+        </ScrollingLabel>
+
+
+      
+
+
+        <Label id="detailTitleVideoPLaybackLoadIngNumber" horizAlign="Center" height="100" color="#ed1c24" translation="[0,550]" width="1280" >
+          <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="32" />
+        </Label> 
+      </Group>
+
+      <Group id="videoPlayBackPlay" translation="[0,720]" visible="false">
+        <Rectangle id="playeBackGradient" color="#141414" translation="[0,0]" height="720" width="1280" opacity="0.7"/>
+        <ScrollingLabel id="detailTitleVideoPLaybackVideoPLay" horizAlign="left" scrollSpeed="50" color="#ffffff" translation="[60,80]" maxWidth="1200" >
+          <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="36" />
+        </ScrollingLabel>
+        <Label id="detailDescriptionVideoPLaybackVideoPLayback" color="#ffffff" lineSpacing="0.2" wrap="true" translation="[60,130]" horizAlign="left" height="350"  width="900" >
+
+          <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="24" />
+
+        </Label>  
+        <Poster id="play_pause_Icon" height="32" width="32" translation="[60,650]" />
+        <videoPlayerUI id="videoPlayerUI"  translation="[170,660]"/> 
+        <Label id="speedXvalue"  height="100" color="#ed1c24" translation="[105,645]" width="100" >
+          <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="32" />
+        </Label> 
+      </Group>
+
+      <Animation id = "R1Animation" duration = "0.4" easeFunction = "linear" >
+        <Vector2DFieldInterpolator id="R1A1translation"    key= "[0,0.4]" fieldToInterp="videoPlayBackPlay.translation" /> 
+
+      </Animation>
+
+      <Timer id="playerInfoInvisibleTimer" duration="5" repeat="true"/>
+      <Timer id="seekTimerControler" duration="1" repeat="true"/>
+      <Timer id="playTimerControler" duration="1" repeat="true"/>
+
+
+
+        <LoadingIndicator2
+        id="loadingIndicator"
+        visible="false"       
+        />  
+
+
+   </Group>
+
+   <Timer id="detailInvisibleTimer" duration="1" repeat="true"/>
+      
+    
+
+    </children>
+</component>

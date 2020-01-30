@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********--> 
+
+<!-- 
+    main node which handles home screen children 
+    -->
+<component name="HomeScreen" extends="Group">
+    
+    <interface>
+      	<field id="startParse" type="bool" onChange="startParse"/>
+      	<field id="showSearchScreen" type="bool"/>
+      	<field id="showCategoryScreen" type="bool"/>
+      	<field id="showFavoriteScreen" type="bool"/>
+      	<field id="showDetailScreen" type="bool"/>
+      	<field id="contentData" type="node" alwaysNotify="true"/>
+      	<field id="content" type="node" alias="contentList.content" alwaysNotify="true"/>
+
+
+      	<field id="contentItemSelected" type="intArray" alias="contentList.rowItemSelected" onChange="contentItemSelected"/>
+      	<field id="contentItemFocused" type="intArray" alias="contentList.rowItemFocused" onChange="contentItemFocused"/>
+
+
+
+
+    </interface>    
+   
+    <script type="text/brightscript" uri="pkg:/components/HomeScreen/homescreen.brs" />
+	<script type="text/brightscript" uri="pkg:/source/main.brs" />
+	
+    
+    <children>	
+    	
+
+
+	     
+	      <Poster id="detailPoster" height="720" width="1280" translation="[0,0]" />
+	      <Rectangle id="opacityBG" color="#000000" height="620" width="1280" translation="[0,100]" opacity="0.7"/> 
+	      <Rectangle id="opacityBGHeader" color="#000000" height="100" width="1280" translation="[0,0]" opacity="0.6"/> 
+    	  <Poster id="headerLogo" uri="pkg://images/logo.png" translation="[60,10]" height="80" width="263" />
+
+	      <Label id="titleMarker" visible="false" text="|" color="#ed1c24"  wrap="true" translation="[60,110]" height="250" width="900" >	
+			 <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="36" />
+
+     	  </Label> 
+
+	      <ScrollingLabel id="detailTitle" scrollSpeed="50" color="#ffffff" translation="[75,110]" height="100" maxWidth="700" >
+
+	        <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="36" />
+
+	      </ScrollingLabel>  
+
+	      <Label id="detailDescription" color="#ffffff" lineSpacing="0.2" wrap="true" translation="[60,160]" height="250" width="900" >	
+			 <Font role="font" uri="pkg:/fonts/lato/Lato-Bold.ttf" size="24" />
+
+     	  </Label> 
+
+
+
+
+
+			
+		<Rowlist
+		id = "contentList"
+		itemComponentName="homelistItemdesign"
+		focusBitmapURI="pkg://images/white.9.png"
+		focusBitmapBlendColor="#ed1c24"
+		visible="true"		
+		numRows="2"	
+		rowFocusAnimationStyle="floatingfocus"
+
+		showRowLabel="true"
+		showRowCounter="true"
+		/>	
+
+		
+			
+		<LoadingIndicator2
+		id="loadingIndicator"
+		visible="false"				
+		/>	
+    </children>
+</component>

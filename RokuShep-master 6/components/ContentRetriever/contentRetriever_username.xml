@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="contentRetriever_username" extends="Task" >
+
+<interface>
+ <field id="username" type="String"/>
+
+
+</interface>
+
+<script type="text/brightscript" uri="pkg:/components/ContentRetriever/contentRetriever_username.brs" />
+<script type="text/brightscript" uri="pkg:/source/main.brs" />
+
+</component>

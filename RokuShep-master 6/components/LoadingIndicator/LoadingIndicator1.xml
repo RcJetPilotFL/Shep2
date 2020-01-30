@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<component name="LoadingIndicator1" extends="Group">
+
+  <children>
+    <Poster id="LoadingImage" >
+      <Animation
+        id="RotationAnimation"
+        repeat="true"
+        easeFunction="linear">
+        <FloatFieldInterpolator
+          key="[1, 0]"
+          keyValue="[0, 6.283]"
+          fieldToInterp="LoadingImage.rotation"/>
+      </Animation>
+    </Poster>
+    <Animation
+      id="FadeAnimation"
+      repeat="false"
+      easeFunction="linear">
+      <FloatFieldInterpolator
+        id="FadeInterpolator"
+        keyValue="[1, 0]"
+        key="[0, 1]"
+        fieldToInterp="LoadingImage.opacity"/>
+    </Animation>
+  </children>
+
+  <interface>
+    <field id="uri" type="string" alias="loadingImage.uri" value="pkg:/images/spin.png"/>
+    <field id="control" type="string" onChange="onControl"/>
+    <field id="height" type="int" onChange="onSizeChange"/>
+    <field id="width" type="int" onChange="onSizeChange"/>
+  </interface>
+
+  <script type="text/brightscript" uri="pkg:/components/LoadingIndicator/LoadingIndicator1.brs"/>
+  <script type="text/brightscript" uri="pkg:/source/main.brs" />
+</component>
